@@ -1,0 +1,44 @@
+[[group]]
+path = "servers"
+aliases = [ "sr" ]
+
+[[group]]
+path = "services"
+aliases = [ "sv" ]
+
+[[group]]
+path = "web"
+aliases = [ "w" ]
+
+[[task]]
+name = "redeploy"
+aliases = [ "rd" ]
+groups = [ "web" ]
+targets = [ "web/website" ]
+commands = [
+	"stop $",
+	"build $",
+	"up -d $"
+]
+
+[[task]]
+name = "web"
+groups = [ "web" ]
+targets = [ "web/website" ]
+commands = [
+	"$1"
+]
+
+[[task]]
+name = "fullstop"
+groups = [ "*" ]
+commands = [
+	"down"
+]
+
+[[task]]
+name = "default"
+groups = [ "*" ]
+commands = [
+	"up -d"
+]
